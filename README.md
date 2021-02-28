@@ -23,9 +23,9 @@ can view the cars on the lot and make offers.
 Employee <br />
 Customer <br />
 Car <br />
-Lot Car <br />
-Offer Car <br />
-Payments Car <br />
+Lot <br />
+Offer <br />
+Payments <br />
 
 
 DRIVER->UI->SERVICE
