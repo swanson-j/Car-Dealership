@@ -20,11 +20,12 @@ can view the cars on the lot and make offers.
 * As the system, I can calculate the monthly payment.
 
 ###Objects
-Employee
-Customer
-Car
-Lot
-Offer
-Payments
+Employee <br />
+Customer <br />
+Car <br />
+Lot Car <br />
+Offer Car <br />
+Payments Car <br />
+
 
 DRIVER->UI->SERVICE
