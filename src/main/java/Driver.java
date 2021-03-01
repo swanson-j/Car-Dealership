@@ -15,6 +15,7 @@ public class Driver {
 
             if(response.equals("Login")){
                 loginMenu.showMenu(scan);
+                continueLoop = false;
             }else if(response.equals("Sign up")){
 
             }else if(response.equals("exit")){
