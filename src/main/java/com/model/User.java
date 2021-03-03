@@ -3,7 +3,7 @@ package com.model;
 public abstract class User {
     private String username;
     private String password;
-    private boolean isEmployee;
+    private UserType userType;
 
     public String getUsername() {
         return username;
@@ -21,17 +21,17 @@ public abstract class User {
         this.password = password;
     }
 
-    public boolean isEmployee() {
-        return isEmployee;
+    public UserType getUserType() {
+        return userType;
     }
 
-    public void setEmployee(boolean employee) {
-        isEmployee = employee;
+    public void setUserType(UserType userType) {
+        this.userType = userType;
     }
 
-    public User(String username, String password, boolean isEmployee){
+    public User(String username, String password, UserType userType){
         this.username = username;
         this.password = password;
-        this.isEmployee = isEmployee;
+        this.userType = userType;
     }
 }
