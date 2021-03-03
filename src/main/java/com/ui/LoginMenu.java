@@ -18,15 +18,15 @@ public class LoginMenu extends AbstractMenu{
             //TODO: Check database to see if username and password exist
             //  if they do, check for UserType and redirect to appropriate screen
             if(findUserTypeUtility.isEmployee(username, password)){
-
+                EmployeeMenu employeeMenu = new EmployeeMenu();
             } else if(findUserTypeUtility.isCustomer(username, password)){
-
+                CustomerMenu customerMenu = new CustomerMenu();
             } else if(findUserTypeUtility.isUser(username,password)){
                 UserMenu userMenu = new UserMenu();
             } else if(findUserTypeUtility.isNotUser(username, password)){
-
+                System.out.println("Username or password incorrect. Try again.");
             } else {
-
+                System.out.println("Username or password incorrect. Try again.");
             }
         }
     }
