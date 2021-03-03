@@ -1,6 +1,6 @@
 package com.model;
 
-public abstract class User {
+public class User {
     private String username;
     private String password;
     private UserType userType;
@@ -29,6 +29,11 @@ public abstract class User {
         this.userType = userType;
     }
 
+    public User(String username, String password){
+        this.username = username;
+        this.password = password;
+        this.userType = UserType.USER;
+    }
     public User(String username, String password, UserType userType){
         this.username = username;
         this.password = password;
