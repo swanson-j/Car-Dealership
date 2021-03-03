@@ -1,8 +1,11 @@
 package com.ui;
 
+import com.utility.FindUserType;
+
 import java.util.Scanner;
 
 public class LoginMenu extends AbstractMenu{
+    FindUserType findUserTypeUtility = new FindUserType();
 
     @Override
     public void showMenu(Scanner scan) {
@@ -14,7 +17,17 @@ public class LoginMenu extends AbstractMenu{
 
             //TODO: Check database to see if username and password exist
             //  if they do, check for UserType and redirect to appropriate screen
-            
+            if(findUserTypeUtility.isEmployee(username, password)){
+
+            } else if(findUserTypeUtility.isCustomer(username, password)){
+
+            } else if(findUserTypeUtility.isUser(username,password)){
+                UserMenu userMenu = new UserMenu();
+            } else if(findUserTypeUtility.isNotUser(username, password)){
+
+            } else {
+
+            }
         }
     }
 }
