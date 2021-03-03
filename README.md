@@ -5,7 +5,7 @@ facilitates the purchasing of cars. An employee can add cars
 to the lot and manage offers for those cars, while a customer 
 can view the cars on the lot and make offers.
 
-###USer Stories
+###User Stories
 * As a user, I can login.
 * As an employee, I can add a car to the lot.
 * As a customer, I can view the cars on the lot.
