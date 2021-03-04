@@ -1,4 +1,5 @@
 import com.ui.LoginMenu;
+import com.ui.SignUpMenu;
 
 import java.util.Scanner;
 
@@ -6,6 +7,7 @@ public class Driver {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         LoginMenu loginMenu = new LoginMenu();
+        SignUpMenu signUpMenu = new SignUpMenu();
 
         boolean continueLoop = true;
 
@@ -17,9 +19,10 @@ public class Driver {
                 loginMenu.showMenu(scan);
                 continueLoop = false;
             }else if(response.equals("Sign up")){
-
-            }else if(response.equals("exit")){
-
+                signUpMenu.showMenu(scan);
+                continueLoop = false;
+            }else if(response.equals("Exit")){
+                return;
             }
         }
     }

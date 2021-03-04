@@ -19,6 +19,7 @@ public class LoginMenu extends AbstractMenu{
 
     @Override
     public void showMenu(Scanner scan) {
+        System.out.println("============LoginMenu============");
         for(int i = 0; i < 2; i++){
             System.out.println("Enter username: ");
             String username = scan.nextLine();
