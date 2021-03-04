@@ -1,6 +1,10 @@
 package com.utility;
 
+import com.model.User;
+
 public class FindUserType {
+    private User user;
+
     public boolean isEmployee(String username, String password){
         return false;
     }

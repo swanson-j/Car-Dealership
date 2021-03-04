@@ -1,11 +1,21 @@
 package com.ui;
 
+import com.model.User;
 import com.utility.FindUserType;
 
 import java.util.Scanner;
 
 public class LoginMenu extends AbstractMenu{
+    private User user;
     FindUserType findUserTypeUtility = new FindUserType();
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     @Override
     public void showMenu(Scanner scan) {
@@ -22,7 +32,7 @@ public class LoginMenu extends AbstractMenu{
             } else if(findUserTypeUtility.isCustomer(username, password)){
                 CustomerMenu customerMenu = new CustomerMenu();
             } else if(findUserTypeUtility.isUser(username,password)){
-                UserMenu userMenu = new UserMenu();
+                UserMenu userMenu = new UserMenu(getUser());
             } else if(findUserTypeUtility.isNotUser(username, password)){
                 System.out.println("Username or password incorrect. Try again.");
             } else {
