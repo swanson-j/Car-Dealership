@@ -1,6 +1,8 @@
 package com.ui;
 
 import com.model.User;
+import com.model.UserType;
+import com.service.NonUserService;
 
 import java.util.Scanner;
 
@@ -17,9 +19,14 @@ public class SignUpMenu extends AbstractMenu{
             System.out.println("Username: ");
             String userName = scan.nextLine();
             System.out.println("Password: ");
-            String Password = scan.nextLine();
+            String password = scan.nextLine();
 
             //check username
+
+            // if one does not exist
+            User user = new User(userName, password, UserType.USER);
+            NonUserService service = new NonUserService();
+            service.saveUser(user);
 
         }
     }
