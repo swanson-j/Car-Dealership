@@ -2,7 +2,9 @@ package com.dao;
 
 import com.config.ConnectionConfiguration;
 import com.model.User;
+import com.model.UserType;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -24,8 +26,23 @@ public class UserDao implements InterfaceDao<User, String>{
         }
     }
 
-    public User getByPrimaryId(String id) {
-        return null;
+    public User getByPrimaryId(String username) {
+
+        try{
+            String sql = "select * from app_user where username = '" + username + "'";
+            Statement statement = ConnectionConfiguration.getInstance().getConnection().createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+
+            if(!rs.next()){
+                return null;
+            }
+
+            User user = new User(rs.getString(1), rs.getString(2), UserType.values()[rs.getInt(3)]);
+            return user;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public boolean remove(String id) {

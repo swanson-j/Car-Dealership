@@ -1,8 +1,10 @@
 package com.ui;
 
+import com.dao.UserDao;
 import com.model.User;
 import com.model.UserType;
 import com.service.NonUserService;
+import com.service.UserService;
 
 import java.util.Scanner;
 
@@ -10,6 +12,8 @@ public class SignUpMenu extends AbstractMenu{
 
     @Override
     public void showMenu(Scanner scan) {
+
+        UserService userService = new UserService();
 
         System.out.println("============SignUpMenu============");
         //TODO: check if username and password exist
@@ -21,13 +25,19 @@ public class SignUpMenu extends AbstractMenu{
             System.out.println("Password: ");
             String password = scan.nextLine();
 
-            //check username
-
-            // if one does not exist
-            User user = new User(userName, password, UserType.USER);
-            NonUserService service = new NonUserService();
-            service.saveUser(user);
-
+            // if username doesn't exist, make new user
+            if(userService.getByPrimaryId(userName) == null){
+                User user = new User(userName, password, UserType.USER);
+                NonUserService nonUserService = new NonUserService();
+                nonUserService.saveUser(user);
+                System.out.println("Congratulations! You have been promoted to User status");
+                UserMenu userMenu = new UserMenu(user);
+                userMenu.showMenu(scan);
+                // TODO: go to user menu
+                return;
+            } else {
+                System.out.println("Username already exists. Try again.");
+            }
         }
     }
 }
