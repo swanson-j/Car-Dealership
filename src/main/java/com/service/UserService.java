@@ -9,4 +9,9 @@ public class UserService {
         UserDao userDao = new UserDao();
         return userDao.getByPrimaryId(username);
     }
+
+    public boolean userExists(String username){
+        UserDao userDao = new UserDao();
+        return userDao.userExists(username);
+    }
 }

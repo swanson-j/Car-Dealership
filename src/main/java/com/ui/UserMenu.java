@@ -23,6 +23,7 @@ public class UserMenu extends AbstractMenu{
 
     @Override
     public void showMenu(Scanner scan) {
+        System.out.println("============UserMenu============");
         System.out.println(userMessage);
         UIUtility uiUtility = new UIUtility(userMessage);
         if(uiUtility.yOrN(scan) == true){

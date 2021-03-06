@@ -13,8 +13,6 @@ public class UserDao implements InterfaceDao<User, String>{
     public int save(User user) {
         try{
             String sql = "insert into app_user values (?, ?, 1)";
-
-            //Statement statement = ConnectionConfiguration.getInstance().getConnection().createStatement();
             PreparedStatement preparedStatement = ConnectionConfiguration.getInstance().getConnection().prepareStatement(sql);
             preparedStatement.setString(1, user.getUsername());
             preparedStatement.setString(2, user.getPassword());
@@ -53,5 +51,21 @@ public class UserDao implements InterfaceDao<User, String>{
 
     public boolean update(User user) {
         return false;
+    }
+
+    // using prepared statement with custom stored function
+    public boolean userExists(String username){
+        try{
+            String sql = "select car_dealership.userExists(?)";
+            PreparedStatement preparedStatement = ConnectionConfiguration.getInstance().getConnection().prepareStatement(sql);
+            preparedStatement.setString(1, username);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            resultSet.next();
+            return resultSet.getBoolean(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

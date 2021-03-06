@@ -26,7 +26,7 @@ public class SignUpMenu extends AbstractMenu{
             String password = scan.nextLine();
 
             // if username doesn't exist, make new user
-            if(userService.getByPrimaryId(userName) == null){
+            if(!userService.userExists(userName)){
                 User user = new User(userName, password, UserType.USER);
                 NonUserService nonUserService = new NonUserService();
                 nonUserService.saveUser(user);
