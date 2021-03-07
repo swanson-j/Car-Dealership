@@ -1,6 +1,7 @@
 package com.ui;
 
 import com.model.User;
+import com.model.UserType;
 import com.service.LoginService;
 import com.utility.FindUserType;
 
@@ -33,17 +34,17 @@ public class LoginMenu extends AbstractMenu{
 
             if(!(user == null)){
                 //TODO: check for UserType and redirect to appropriate screen
-                if(findUserTypeUtility.isEmployee(username, password)){
+                if(user.getUserType() == UserType.EMPLOYEE){
                     EmployeeMenu employeeMenu = new EmployeeMenu();
-                } else if(findUserTypeUtility.isCustomer(username, password)){
+                    employeeMenu.showMenu(scan);
+                } else if(user.getUserType() == UserType.CUSTOMER){
                     CustomerMenu customerMenu = new CustomerMenu();
-                } else if(findUserTypeUtility.isUser(username,password)){
-                    UserMenu userMenu = new UserMenu(getUser());
-                } else if(findUserTypeUtility.isNotUser(username, password)){
-                    System.out.println("Username or password incorrect. Try again.");
-                } else {
-                    System.out.println("Username or password incorrect. Try again.");
+                    customerMenu.showMenu(scan);
+                } else if(user.getUserType() == UserType.USER){
+                    UserMenu userMenu = new UserMenu(user);
+                    userMenu.showMenu(scan);
                 }
+                return;
             } else {
                 System.out.println("Username or password incorrect. " + (1-i) + " attempts remaining");
             }

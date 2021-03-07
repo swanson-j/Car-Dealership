@@ -3,8 +3,9 @@ package com.service;
 import com.dao.UserDao;
 import com.model.User;
 
-public class LoginService {
+//First two methods no longer used but kept for documentation
 
+public class LoginService {
     public boolean userExists(String userName){
         UserDao userDao = new UserDao();
         return userDao.userExists(userName);

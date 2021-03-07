@@ -2,6 +2,7 @@ package com.ui;
 
 import com.model.User;
 import com.model.UserType;
+import com.utility.UIUtility;
 
 import java.util.Scanner;
 
@@ -24,7 +25,6 @@ public class UserMenu extends AbstractMenu{
     @Override
     public void showMenu(Scanner scan) {
         System.out.println("============UserMenu============");
-        System.out.println(userMessage);
         UIUtility uiUtility = new UIUtility(userMessage);
         if(uiUtility.yOrN(scan) == true){
             user.setUserType(UserType.CUSTOMER);
