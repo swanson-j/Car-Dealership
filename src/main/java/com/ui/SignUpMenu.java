@@ -29,7 +29,7 @@ public class SignUpMenu extends AbstractMenu{
             if(!userService.userExists(userName)){
                 User user = new User(userName, password, UserType.USER);
                 NonUserService nonUserService = new NonUserService();
-                nonUserService.saveUser(user);
+                nonUserService.saveAsUser(user);
                 System.out.println("Congratulations! You have been promoted to User status");
                 UserMenu userMenu = new UserMenu(user);
                 userMenu.showMenu(scan);

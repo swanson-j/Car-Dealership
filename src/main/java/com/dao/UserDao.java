@@ -69,6 +69,19 @@ public class UserDao implements InterfaceDao<User, String>{
         }
     }
 
-    // TODO: get UserType associated wtih a user
-    public UserType
+    // TODO: get UserType associated with a user
+    public UserType getUserType(String username){
+        try{
+            String sql = "select car_dealership.userType(?)";
+            PreparedStatement preparedStatement = ConnectionConfiguration.getInstance().getConnection().prepareStatement(sql);
+            preparedStatement.setString(1, username);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            resultSet.next();
+            return UserType.valueOf(resultSet.getString(1));
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

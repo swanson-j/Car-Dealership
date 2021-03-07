@@ -6,6 +6,7 @@ import com.utility.FindUserType;
 import java.util.Scanner;
 
 public class LoginMenu extends AbstractMenu{
+
     private User user;
     FindUserType findUserTypeUtility = new FindUserType();
 
