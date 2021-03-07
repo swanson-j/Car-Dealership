@@ -68,4 +68,7 @@ public class UserDao implements InterfaceDao<User, String>{
             return false;
         }
     }
+
+    // TODO: get UserType associated wtih a user
+    public UserType
 }
