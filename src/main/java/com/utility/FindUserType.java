@@ -7,11 +7,6 @@ import com.model.UserType;
 public class FindUserType {
     private User user;
 
-    public UserType getUserType(String username){
-        UserDao userDao = new UserDao();
-        return userDao.getUserType(username);
-    }
-
     public boolean isEmployee(String username, String password){
         return false;
     }

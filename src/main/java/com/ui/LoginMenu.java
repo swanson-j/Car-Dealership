@@ -1,6 +1,7 @@
 package com.ui;
 
 import com.model.User;
+import com.service.LoginService;
 import com.utility.FindUserType;
 
 import java.util.Scanner;
@@ -8,6 +9,7 @@ import java.util.Scanner;
 public class LoginMenu extends AbstractMenu{
 
     private User user;
+    LoginService loginService = new LoginService();
     FindUserType findUserTypeUtility = new FindUserType();
 
     public User getUser() {
@@ -27,18 +29,23 @@ public class LoginMenu extends AbstractMenu{
             System.out.println("Enter password:");
             String password = scan.nextLine();
 
-            //TODO: Check database to see if username and password exist
-            //  if they do, check for UserType and redirect to appropriate screen
-            if(findUserTypeUtility.isEmployee(username, password)){
-                EmployeeMenu employeeMenu = new EmployeeMenu();
-            } else if(findUserTypeUtility.isCustomer(username, password)){
-                CustomerMenu customerMenu = new CustomerMenu();
-            } else if(findUserTypeUtility.isUser(username,password)){
-                UserMenu userMenu = new UserMenu(getUser());
-            } else if(findUserTypeUtility.isNotUser(username, password)){
-                System.out.println("Username or password incorrect. Try again.");
+            User user = loginService.getUserByCredentials(username, password);
+
+            if(!(user == null)){
+                //TODO: check for UserType and redirect to appropriate screen
+                if(findUserTypeUtility.isEmployee(username, password)){
+                    EmployeeMenu employeeMenu = new EmployeeMenu();
+                } else if(findUserTypeUtility.isCustomer(username, password)){
+                    CustomerMenu customerMenu = new CustomerMenu();
+                } else if(findUserTypeUtility.isUser(username,password)){
+                    UserMenu userMenu = new UserMenu(getUser());
+                } else if(findUserTypeUtility.isNotUser(username, password)){
+                    System.out.println("Username or password incorrect. Try again.");
+                } else {
+                    System.out.println("Username or password incorrect. Try again.");
+                }
             } else {
-                System.out.println("Username or password incorrect. Try again.");
+                System.out.println("Username or password incorrect. " + (1-i) + " attempts remaining");
             }
         }
     }

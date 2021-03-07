@@ -69,7 +69,7 @@ public class UserDao implements InterfaceDao<User, String>{
         }
     }
 
-    // TODO: get UserType associated with a user
+    // get userType associated with User
     public UserType getUserType(String username){
         try{
             String sql = "select car_dealership.userType(?)";
@@ -79,6 +79,28 @@ public class UserDao implements InterfaceDao<User, String>{
 
             resultSet.next();
             return UserType.valueOf(resultSet.getString(1));
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    // find user by username and password
+    public User getByCredentials(String username, String password) {
+
+        try{
+            String sql = "select * from car_dealership.app_user au where au.username = ? and au.password = ?;";
+            PreparedStatement preparedStatement = ConnectionConfiguration.getInstance().getConnection().prepareStatement(sql);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if(!resultSet.next()){
+                return null;
+            }
+
+            User user = new User(resultSet.getString(1), resultSet.getString(2), UserType.values()[resultSet.getInt(3)]);
+            return user;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
