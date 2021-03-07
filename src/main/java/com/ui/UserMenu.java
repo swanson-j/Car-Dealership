@@ -1,7 +1,9 @@
 package com.ui;
 
+import com.dao.UserDao;
 import com.model.User;
 import com.model.UserType;
+import com.service.UserService;
 import com.utility.UIUtility;
 
 import java.util.Scanner;
@@ -25,10 +27,21 @@ public class UserMenu extends AbstractMenu{
     @Override
     public void showMenu(Scanner scan) {
         System.out.println("============UserMenu============");
+
         UIUtility uiUtility = new UIUtility(userMessage);
         if(uiUtility.yOrN(scan) == true){
-            user.setUserType(UserType.CUSTOMER);
+            getUser().setUserType(UserType.CUSTOMER);
             //TODO: set user type to Customer in database and pull up Customer Menu
+            UserService userService = new UserService();
+            if(userService.updateToCustomer(getUser())){
+                System.out.println("Registered as Customer!");
+                CustomerMenu customerMenu = new CustomerMenu();
+                customerMenu.showMenu(scan);
+            } else {
+                System.out.println("Cannot register as customer");
+            }
+
+            return;
         } else {
             System.out.println("Goodbye!!");
             return;

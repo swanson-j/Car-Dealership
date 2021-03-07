@@ -14,4 +14,9 @@ public class UserService {
         UserDao userDao = new UserDao();
         return userDao.userExists(username);
     }
+
+    public boolean updateToCustomer(User user){
+        UserDao userDao = new UserDao();
+        return userDao.update(user);
+    }
 }

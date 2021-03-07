@@ -49,11 +49,23 @@ public class UserDao implements InterfaceDao<User, String>{
         return false;
     }
 
+    // custom function used to make user a customer
     public boolean update(User user) {
-        return false;
+        try{
+            String sql = "select car_dealership.makeCustomerType(?)";
+            PreparedStatement preparedStatement = ConnectionConfiguration.getInstance().getConnection().prepareStatement(sql);
+            preparedStatement.setString(1, user.getUsername());
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            resultSet.next();
+            return resultSet.getBoolean(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
-    // using prepared statement with custom stored function
+    // using prepared statement with custom stored function to check if a user exists
     public boolean userExists(String username){
         try{
             String sql = "select car_dealership.userExists(?)";
