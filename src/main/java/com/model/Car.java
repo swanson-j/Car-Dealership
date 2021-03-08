@@ -5,16 +5,15 @@ public class Car {
     private String make;
     private String model;
     private int year;
-    private String color;
     private float value;
     private CarType carType;
+    private String username;
 
-    public Car(String vinNumber, String make, String model, int year, String color, float value, CarType carType) {
+    public Car(String vinNumber, String make, String model, int year, float value, CarType carType) {
         this.vinNumber = vinNumber;
         this.make = make;
         this.model = model;
         this.year = year;
-        this.color = color;
         this.value = value;
         this.carType = carType;
     }
@@ -49,14 +48,6 @@ public class Car {
 
     public void setYear(int year) {
         this.year = year;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
     }
 
     public float getValue() {
