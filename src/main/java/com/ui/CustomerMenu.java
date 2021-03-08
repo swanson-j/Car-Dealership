@@ -31,6 +31,7 @@ public class CustomerMenu extends AbstractMenu{
                 OfferMenu offerMenu = new OfferMenu(user);
                 offerMenu.showMenu(scan);
             }else if(response.equals("View owned cars")){
+                customerService.viewOwnedCars(user.getUsername());
             }else if(response.equals("View payments")){
             }else if(response.equals("Exit")){
                 continueLoop = false;

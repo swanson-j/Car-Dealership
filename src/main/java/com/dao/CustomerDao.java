@@ -121,4 +121,21 @@ public class CustomerDao implements InterfaceDao{
             return -1;
         }
     }
+
+    public void viewOwnedCars(String username){
+        try{
+            String sql = "select * from car_dealership.car c where c.username = ?";
+            PreparedStatement preparedStatement = ConnectionConfiguration.getInstance().getConnection().prepareStatement(sql);
+            preparedStatement.setString(1, username);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                System.out.println(resultSet.getString(1) + "\t" + resultSet.getString(2) + "\t\t" +
+                        resultSet.getString(3) + "\t" + resultSet.getInt(4) + "\t" +
+                        resultSet.getFloat(5));
+            }
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
 }

@@ -7,7 +7,7 @@ import com.ui.CustomerMenu;
 import java.util.Scanner;
 
 public class CustomerService {
-
+    static CustomerDao customerDao = new CustomerDao();
     final int COUNT = 5;
 
     public void showLot(Scanner scan){
@@ -30,22 +30,23 @@ public class CustomerService {
     }
 
     public boolean carExistsByVin(String vinNumber){
-        CustomerDao customerDao = new CustomerDao();
         return customerDao.carExistsByVin(vinNumber);
     }
 
     public boolean offerExists(String offerId){
-        CustomerDao customerDao = new CustomerDao();
         return customerDao.offerExists(offerId);
     }
 
     public int remakeOffer(String offerId, float offerPrice){
-        CustomerDao customerDao = new CustomerDao();
         return customerDao.remakeOffer(offerId, offerPrice);
     }
 
     public int makeNewOffer(Offer offer){
-        CustomerDao customerDao = new CustomerDao();
         return customerDao.makeNewOffer(offer);
+    }
+
+    public void viewOwnedCars(String username){
+        System.out.println("vin\t\t\t\t\tmake\t\tmodel\tyear\tprice");
+        customerDao.viewOwnedCars(username);
     }
 }
