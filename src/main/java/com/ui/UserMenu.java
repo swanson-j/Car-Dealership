@@ -30,22 +30,18 @@ public class UserMenu extends AbstractMenu{
 
         UIUtility uiUtility = new UIUtility(userMessage);
         if(uiUtility.yOrN(scan) == true){
-            getUser().setUserType(UserType.CUSTOMER);
+            user.setUserType(UserType.CUSTOMER);
             //TODO: set user type to Customer in database and pull up Customer Menu
             UserService userService = new UserService();
-            if(userService.updateToCustomer(getUser())){
+            if(userService.updateToCustomer(user)){
                 System.out.println("Registered as Customer!");
                 CustomerMenu customerMenu = new CustomerMenu();
                 customerMenu.showMenu(scan);
             } else {
                 System.out.println("Cannot register as customer");
             }
-
-            return;
         } else {
             System.out.println("Goodbye!!");
-            return;
         }
     }
-
 }

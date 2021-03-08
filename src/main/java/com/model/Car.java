@@ -7,10 +7,16 @@ public class Car {
     private int year;
     private String color;
     private float value;
+    private CarType carType;
 
-    // TODO: create constructors
-    public Car(){
-
+    public Car(String vinNumber, String make, String model, int year, String color, float value, CarType carType) {
+        this.vinNumber = vinNumber;
+        this.make = make;
+        this.model = model;
+        this.year = year;
+        this.color = color;
+        this.value = value;
+        this.carType = carType;
     }
 
     public String getVinNumber() {
@@ -59,5 +65,13 @@ public class Car {
 
     public void setValue(float value) {
         this.value = value;
+    }
+
+    public CarType getCarType() {
+        return carType;
+    }
+
+    public void setCarType(CarType carType) {
+        this.carType = carType;
     }
 }
