@@ -35,7 +35,7 @@ public class UserMenu extends AbstractMenu{
             UserService userService = new UserService();
             if(userService.updateToCustomer(user)){
                 System.out.println("Registered as Customer!");
-                CustomerMenu customerMenu = new CustomerMenu();
+                CustomerMenu customerMenu = new CustomerMenu(user);
                 customerMenu.showMenu(scan);
             } else {
                 System.out.println("Cannot register as customer");

@@ -1,6 +1,7 @@
 package com.service;
 
 import com.dao.CustomerDao;
+import com.model.Offer;
 import com.ui.CustomerMenu;
 
 import java.util.Scanner;
@@ -26,5 +27,25 @@ public class CustomerService {
                 }
             }
         }
+    }
+
+    public boolean carExistsByVin(String vinNumber){
+        CustomerDao customerDao = new CustomerDao();
+        return customerDao.carExistsByVin(vinNumber);
+    }
+
+    public boolean offerExists(String offerId){
+        CustomerDao customerDao = new CustomerDao();
+        return customerDao.offerExists(offerId);
+    }
+
+    public int remakeOffer(String offerId, float offerPrice){
+        CustomerDao customerDao = new CustomerDao();
+        return customerDao.remakeOffer(offerId, offerPrice);
+    }
+
+    public int makeNewOffer(Offer offer){
+        CustomerDao customerDao = new CustomerDao();
+        return customerDao.makeNewOffer(offer);
     }
 }

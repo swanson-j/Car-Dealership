@@ -1,6 +1,7 @@
 package com.dao;
 
 import com.config.ConnectionConfiguration;
+import com.model.Offer;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -51,6 +52,73 @@ public class CustomerDao implements InterfaceDao{
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    public boolean carExistsByVin(String vinNumber){
+        try{
+            String sql = "select count(*) from car_dealership.car c where c.vin_number = ?";
+            PreparedStatement preparedStatement = ConnectionConfiguration.getInstance().getConnection().prepareStatement(sql);
+            preparedStatement.setString(1, vinNumber);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            if(resultSet.getInt(1) > 0){
+                return true;
+            } else {
+                return false;
+            }
+        } catch(SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean offerExists(String offerId){
+        try{
+            String sql = "select count(*) from car_dealership.offer o where o.offer_id = ?";
+            PreparedStatement preparedStatement = ConnectionConfiguration.getInstance().getConnection().prepareStatement(sql);
+            preparedStatement.setString(1, offerId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            if(resultSet.getInt(1) > 0){
+                return true;
+            } else {
+                return false;
+            }
+        } catch(SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public int remakeOffer(String offerId, float offerPrice){
+        try{
+            String sql = "update car_dealership.offer set offer_price = ? where car_dealership.offer.offer_id = ?";
+            PreparedStatement preparedStatement = ConnectionConfiguration.getInstance().getConnection().prepareStatement(sql);
+            preparedStatement.setFloat(1, offerPrice);
+            preparedStatement.setString(2, offerId);
+            int i = preparedStatement.executeUpdate();
+            return i;
+        } catch(SQLException e){
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    public int makeNewOffer(Offer offer){
+        try{
+            String offerId = offer.getVinNumber().concat(offer.getUsername());
+            String sql = "insert into car_dealership.offer values (?, ?, ?, ?);";
+            PreparedStatement preparedStatement = ConnectionConfiguration.getInstance().getConnection().prepareStatement(sql);
+            preparedStatement.setString(1, offerId);
+            preparedStatement.setString(2, offer.getVinNumber());
+            preparedStatement.setString(3, offer.getUsername());
+            preparedStatement.setFloat(4, offer.getOfferPrice());
+            int i = preparedStatement.executeUpdate();
+            return i;
+        } catch(SQLException e){
+            e.printStackTrace();
+            return -1;
         }
     }
 }

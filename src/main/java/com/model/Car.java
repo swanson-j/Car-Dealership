@@ -18,6 +18,16 @@ public class Car {
         this.carType = carType;
     }
 
+    public Car(String vinNumber, String make, String model, int year, float value, CarType carType, String username) {
+        this.vinNumber = vinNumber;
+        this.make = make;
+        this.model = model;
+        this.year = year;
+        this.value = value;
+        this.carType = carType;
+        this.username = username;
+    }
+
     public String getVinNumber() {
         return vinNumber;
     }

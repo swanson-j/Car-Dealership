@@ -38,7 +38,7 @@ public class LoginMenu extends AbstractMenu{
                     EmployeeMenu employeeMenu = new EmployeeMenu();
                     employeeMenu.showMenu(scan);
                 } else if(user.getUserType() == UserType.CUSTOMER){
-                    CustomerMenu customerMenu = new CustomerMenu();
+                    CustomerMenu customerMenu = new CustomerMenu(user);
                     customerMenu.showMenu(scan);
                 } else if(user.getUserType() == UserType.USER){
                     UserMenu userMenu = new UserMenu(user);
