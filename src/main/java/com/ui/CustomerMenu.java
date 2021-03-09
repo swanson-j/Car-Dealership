@@ -1,5 +1,6 @@
 package com.ui;
 
+import com.model.Payment;
 import com.model.User;
 import com.service.CustomerService;
 
@@ -25,14 +26,13 @@ public class CustomerMenu extends AbstractMenu{
             if(response.equals("View lot")){
                 customerService.showLot(scan);
             }else if(response.equals("Make offer")){
-                // TODO: check if vin and user exist in database
-                //          if it does, override the offer value
-                //          else create an id and put it in the database
                 OfferMenu offerMenu = new OfferMenu(user);
                 offerMenu.showMenu(scan);
             }else if(response.equals("View owned cars")){
                 customerService.viewOwnedCars(user.getUsername());
             }else if(response.equals("View payments")){
+                PaymentMenu paymentMenu = new PaymentMenu(user);
+                paymentMenu.showMenu(scan);
             }else if(response.equals("Exit")){
                 continueLoop = false;
             }

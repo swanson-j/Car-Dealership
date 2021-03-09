@@ -138,4 +138,36 @@ public class CustomerDao implements InterfaceDao{
             e.printStackTrace();
         }
     }
+
+    public int remainingPaymentCount(String username){
+        try{
+            String sql = "select count(*) from car_dealership.payment where car_dealership.payment.username = ? and car_dealership.payment.payment_type = 0";
+            PreparedStatement preparedStatement = ConnectionConfiguration.getInstance().getConnection().prepareStatement(sql);
+            preparedStatement.setString(1, username);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            resultSet.next();
+            return resultSet.getInt(1);
+        } catch(SQLException e){
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    public void viewRemainingPayments(String username, int offset){
+        try{
+            String sql = "select * from car_dealership.payment where car_dealership.payment.username = ? and car_dealership.payment.payment_type = 0 offset ? limit 20";
+            PreparedStatement preparedStatement = ConnectionConfiguration.getInstance().getConnection().prepareStatement(sql);
+            preparedStatement.setString(1, username);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                System.out.println(resultSet.getString(1) + "\t" + resultSet.getString(2) + "\t\t" +
+                        resultSet.getString(3) + "\t" + resultSet.getInt(4) + "\t" +
+                        resultSet.getFloat(5));
+            }
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
 }
