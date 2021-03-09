@@ -54,4 +54,18 @@ public class EmployeeDao implements InterfaceDao{
             return -1;
         }
     }
+
+    public boolean offerExists(String offerId){
+        try{
+            String sql = "select count(*) from car_dealership.offer o where o.offer_id = ?";
+            PreparedStatement preparedStatement = ConnectionConfiguration.getInstance().getConnection().prepareStatement(sql);
+            preparedStatement.setString(1, offerId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            return resultSet.getInt(1) > 0;
+        } catch(SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
