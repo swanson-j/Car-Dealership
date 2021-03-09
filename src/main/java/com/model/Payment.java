@@ -1,6 +1,6 @@
 package com.model;
 
-public class Payments {
+public class Payment {
     private float carPrice;
     private float downPayment;
     private float loanAmount;
@@ -8,7 +8,7 @@ public class Payments {
     private int months;
     private float monthlyPayment;
 
-    public Payments(float carPrice, float downPayment, float loanAmount, float interestRate, int months) {
+    public Payment(float carPrice, float downPayment, float loanAmount, float interestRate, int months) {
         this.carPrice = carPrice;
         this.downPayment = downPayment;
         this.loanAmount = loanAmount;
