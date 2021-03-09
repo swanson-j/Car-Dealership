@@ -2,6 +2,7 @@ package com.dao;
 
 import com.config.ConnectionConfiguration;
 import com.model.Car;
+import com.model.Offer;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -66,6 +67,33 @@ public class EmployeeDao implements InterfaceDao{
         } catch(SQLException e){
             e.printStackTrace();
             return false;
+        }
+    }
+
+    public void getOfferDetails(Offer offer, String offerId){
+        try{
+            String sql = "select * from car_dealership.offer o where o.offer_id = ?";
+            PreparedStatement preparedStatement = ConnectionConfiguration.getInstance().getConnection().prepareStatement(sql);
+            preparedStatement.setString(1, offerId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            offer.setVinNumber(resultSet.getString(2));
+            offer.setUsername(resultSet.getString(3));
+            offer.setOfferPrice(resultSet.getFloat(4));
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public int deleteOffersOnCar(String vinNumber){
+        try{
+            String sql = "delete from car_dealership.offer where vin_number = ?";
+            PreparedStatement preparedStatement = ConnectionConfiguration.getInstance().getConnection().prepareStatement(sql);
+            preparedStatement.setString(1, vinNumber);
+            return preparedStatement.executeUpdate();
+        } catch(SQLException e){
+            e.printStackTrace();
+            return -1;
         }
     }
 }

@@ -19,7 +19,7 @@ public class ConnectionConfiguration {
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(
                 "jdbc:postgresql://samplepsql.cvit2io6ehiq.us-east-1.rds.amazonaws.com:5432/postgres?currentSchema=car_dealership",
-                "swansonj",
-                "Orderedjoker615!");
+                "",
+                "");
     }
 }

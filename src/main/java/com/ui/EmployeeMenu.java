@@ -22,6 +22,8 @@ public class EmployeeMenu extends AbstractMenu {
                 AddCarMenu addCarMenu = new AddCarMenu();
                 addCarMenu.showMenu(scan);
             }else if(response.equals("Review offer")){
+                ReviewOfferMenu reviewOfferMenu = new ReviewOfferMenu();
+                reviewOfferMenu.showMenu(scan);
             }else if(response.equals("Remove car")){
             }else if(response.equals("View payments")){
             }else if(response.equals("Exit")){

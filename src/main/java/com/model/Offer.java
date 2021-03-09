@@ -34,4 +34,6 @@ public class Offer {
         this.vinNumber = vinNumber;
         this.username = username;
     }
+
+    public Offer() {    }
 }
