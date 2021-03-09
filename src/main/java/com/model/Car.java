@@ -9,6 +9,14 @@ public class Car {
     private CarType carType;
     private String username;
 
+    public Car(String vinNumber, String make, String model, int year, float value) {
+        this.vinNumber = vinNumber;
+        this.make = make;
+        this.model = model;
+        this.year = year;
+        this.value = value;
+    }
+
     public Car(String vinNumber, String make, String model, int year, float value, CarType carType) {
         this.vinNumber = vinNumber;
         this.make = make;
