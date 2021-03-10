@@ -22,7 +22,8 @@ public class PaymentMenu extends AbstractMenu{
     }
 
     public void showMenu(Scanner scan) {
-        System.out.println("============PaymentMenu============");
+        System.out.println("=========================PaymentMenu=========================");
+        System.out.println("Payment ID\t\t\t\t\tUsername\tVin Number\t\t\tPayment Type\tPayment Amount" );
 
         PaymentService paymentService = new PaymentService();
         paymentService.viewRemainingPayments(user.getUsername(), scan);

@@ -2,6 +2,7 @@ package com.dao;
 
 import com.config.ConnectionConfiguration;
 import com.model.Offer;
+import com.model.PaymentType;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -159,11 +160,12 @@ public class CustomerDao implements InterfaceDao{
             String sql = "select * from car_dealership.payment where car_dealership.payment.username = ? and car_dealership.payment.payment_type = 0 offset ? limit 20";
             PreparedStatement preparedStatement = ConnectionConfiguration.getInstance().getConnection().prepareStatement(sql);
             preparedStatement.setString(1, username);
+            preparedStatement.setInt(2, offset);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()){
                 System.out.println(resultSet.getString(1) + "\t" + resultSet.getString(2) + "\t\t" +
-                        resultSet.getString(3) + "\t" + resultSet.getInt(4) + "\t" +
+                        resultSet.getString(3) + "\t" + PaymentType.values()[resultSet.getInt(4)] + "\t\t\t" +
                         resultSet.getFloat(5));
             }
         } catch(SQLException e){
