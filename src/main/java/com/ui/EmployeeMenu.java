@@ -2,6 +2,7 @@ package com.ui;
 
 import com.service.CustomerService;
 import com.service.EmployeeService;
+import com.service.RemoveCarService;
 
 import java.util.Scanner;
 
@@ -25,6 +26,8 @@ public class EmployeeMenu extends AbstractMenu {
                 ReviewOfferMenu reviewOfferMenu = new ReviewOfferMenu();
                 reviewOfferMenu.showMenu(scan);
             }else if(response.equals("Remove car")){
+                RemoveCarMenu removeCarMenu = new RemoveCarMenu();
+                removeCarMenu.showMenu(scan);
             }else if(response.equals("View payments")){
             }else if(response.equals("Exit")){
                 continueLoop = false;

@@ -137,4 +137,43 @@ public class EmployeeDao implements InterfaceDao{
             return -1;
         }
     }
+
+    public boolean carExistsOnLot(String vinNumber){
+        try{
+            String sql = "select count(*) from car_dealership.car where car_dealership.car.vin_number = ? and car_type = 0";
+            PreparedStatement preparedStatement = ConnectionConfiguration.getInstance().getConnection().prepareStatement(sql);
+            preparedStatement.setString(1, vinNumber);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            return resultSet.getInt(1) > 0;
+        } catch(SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public int removeAllCarOffers(String vinNumber){
+        try{
+            String sql = "delete from car_dealership.offer where vin_number = ?";
+            PreparedStatement preparedStatement = ConnectionConfiguration.getInstance().getConnection().prepareStatement(sql);
+            preparedStatement.setString(1, vinNumber);
+            return preparedStatement.executeUpdate();
+        } catch(SQLException e){
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    public int removeCarFromLot(String vinNumber){
+        try{
+            String sql = "delete from car_dealership.car where vin_number = ?";
+            PreparedStatement preparedStatement = ConnectionConfiguration.getInstance().getConnection().prepareStatement(sql);
+            preparedStatement.setString(1, vinNumber);
+            return preparedStatement.executeUpdate();
+        } catch(SQLException e){
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
 }
