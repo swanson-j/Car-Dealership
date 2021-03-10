@@ -16,6 +16,18 @@
             <version>42.2.8</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.enterprise</groupId>
+            <artifactId>java-testing-framework</artifactId>
+            <version>0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
 
