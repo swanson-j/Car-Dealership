@@ -1,6 +1,7 @@
 package com.ui;
 
 import com.service.CustomerService;
+import com.service.EmployeePaymentViewService;
 import com.service.EmployeeService;
 import com.service.RemoveCarService;
 
@@ -29,6 +30,8 @@ public class EmployeeMenu extends AbstractMenu {
                 RemoveCarMenu removeCarMenu = new RemoveCarMenu();
                 removeCarMenu.showMenu(scan);
             }else if(response.equals("View payments")){
+                EmployeePaymentViewMenu employeePaymentViewMenu = new EmployeePaymentViewMenu();
+                employeePaymentViewMenu.showMenu(scan);
             }else if(response.equals("Exit")){
                 continueLoop = false;
             }

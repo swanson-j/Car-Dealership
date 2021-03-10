@@ -1,9 +1,7 @@
 package com.dao;
 
 import com.config.ConnectionConfiguration;
-import com.model.Car;
-import com.model.Offer;
-import com.model.Payment;
+import com.model.*;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -174,6 +172,38 @@ public class EmployeeDao implements InterfaceDao{
             e.printStackTrace();
             return -1;
         }
+    }
+
+    public int paymentCount(){
+        try{
+            String sql = "select count(*) from car_dealership.payment";
+            PreparedStatement preparedStatement = ConnectionConfiguration.getInstance().getConnection().prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            return resultSet.getInt(1);
+        } catch(SQLException e){
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    public void viewAllPayments(int offset, int pageSize){
+        try{
+            String sql = "select * from car_dealership.payment p offset ? limit ?";
+            PreparedStatement preparedStatement = ConnectionConfiguration.getInstance().getConnection().prepareStatement(sql);
+            preparedStatement.setInt(1, offset);
+            preparedStatement.setInt(2, pageSize);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            int i = 0;
+            while(resultSet.next()){
+                System.out.println(resultSet.getString(1) + "\t" + resultSet.getString(2) + "\t" + resultSet.getString(3) +
+                                        "\t" + PaymentType.values()[resultSet.getInt(4)] + "\t\t\t" + resultSet.getFloat(5));
+            }
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+
     }
 
 }
