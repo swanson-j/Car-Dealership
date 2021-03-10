@@ -16,6 +16,8 @@ public class Payment {
         this.months = months;
     }
 
+    public Payment(){}
+
     public float getCarPrice() {
         return carPrice;
     }

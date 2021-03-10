@@ -3,6 +3,7 @@ package com.dao;
 import com.config.ConnectionConfiguration;
 import com.model.Car;
 import com.model.Offer;
+import com.model.Payment;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -94,6 +95,34 @@ public class EmployeeDao implements InterfaceDao{
         } catch(SQLException e){
             e.printStackTrace();
             return -1;
+        }
+    }
+
+    public int createPayments(String paymentId, String username, String vinNumber, float paymentAmount){
+        try{
+            String sql = "insert into car_dealership.payment values (?,?,?,0,?)";
+            PreparedStatement preparedStatement = ConnectionConfiguration.getInstance().getConnection().prepareStatement(sql);
+            preparedStatement.setString(1, paymentId);
+            preparedStatement.setString(2, username);
+            preparedStatement.setString(3, vinNumber);
+            preparedStatement.setFloat(4, paymentAmount);
+            return preparedStatement.executeUpdate();
+        } catch(SQLException e){
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    public void changeCarOwnership(String username, String vinNumber, float offerPrice){
+        try{
+            String sql = "update car_dealership.car set car_type = 1, username = ?, value = ? where car_dealership.car.vin_number = ?";
+            PreparedStatement preparedStatement = ConnectionConfiguration.getInstance().getConnection().prepareStatement(sql);
+            preparedStatement.setString(1, username);
+            preparedStatement.setFloat(2, offerPrice);
+            preparedStatement.setString(3, vinNumber);
+            preparedStatement.executeUpdate();
+        } catch(SQLException e){
+            e.printStackTrace();
         }
     }
 }

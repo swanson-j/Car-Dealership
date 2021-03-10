@@ -18,4 +18,8 @@ public class ReviewOfferService {
         return employeeDao.deleteOffersOnCar(vinNumber);
     }
 
+    public void changeCarOwnership(String username, String vinNumber, float offerPrice){
+        employeeDao.changeCarOwnership(username, vinNumber, offerPrice);
+    }
+
 }
