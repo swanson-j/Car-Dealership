@@ -125,4 +125,16 @@ public class EmployeeDao implements InterfaceDao{
             e.printStackTrace();
         }
     }
+
+    public int deleteRejectedOffer(String offerId){
+        try{
+            String sql = "delete from car_dealership.offer where offer_id = ?";
+            PreparedStatement preparedStatement = ConnectionConfiguration.getInstance().getConnection().prepareStatement(sql);
+            preparedStatement.setString(1, offerId);
+            return preparedStatement.executeUpdate();
+        } catch(SQLException e){
+            e.printStackTrace();
+            return -1;
+        }
+    }
 }

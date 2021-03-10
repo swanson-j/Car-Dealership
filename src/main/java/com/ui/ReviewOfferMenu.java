@@ -18,11 +18,10 @@ public class ReviewOfferMenu extends AbstractMenu{
             if(reviewOfferService.offerExists(offerId)){
                 while(true){
                     System.out.println("Accept or Decline");
-                    if(scan.nextLine().equals("Accept")){
-                        // TODO: get the vin number of the vehicle and the user
-                        //          delete all offers containing that vin number
-                        //          change car in car table to OWNED by the user
-                        //          calculate payments and add to db
+                    String response = scan.nextLine();
+                    if(response.equals("Accept")){
+
+                        //get offer details
                         Offer offer = new Offer();
                         reviewOfferService.getOfferDetails(offer, offerId);
                         System.out.println("Vin number: " + offer.getVinNumber());
@@ -39,8 +38,10 @@ public class ReviewOfferMenu extends AbstractMenu{
                         // change ownership of car to username
                         reviewOfferService.changeCarOwnership(offer.getUsername(), offer.getVinNumber(), offer.getOfferPrice());
                         return;
-                    } else if(scan.nextLine().equals("Decline")){
-                        // TODO: remove offer from offer table
+                    } else if(response.equals("Decline")){
+                        System.out.println("Offer rejected!");
+                        System.out.println("Updated rows: " + reviewOfferService.deleteRejectedOffer(offerId));
+                        return;
                     }
                 }
             } else {

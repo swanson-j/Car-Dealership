@@ -22,4 +22,8 @@ public class ReviewOfferService {
         employeeDao.changeCarOwnership(username, vinNumber, offerPrice);
     }
 
+    public int deleteRejectedOffer(String offerId){
+        return employeeDao.deleteRejectedOffer(offerId);
+    }
+
 }

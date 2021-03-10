@@ -9,18 +9,14 @@ public class Driver {
         LoginMenu loginMenu = new LoginMenu();
         SignUpMenu signUpMenu = new SignUpMenu();
 
-        boolean continueLoop = true;
-
-        while(continueLoop){
+        while(true){
             System.out.println("Sign up, Login, Exit");
             String response = scan.nextLine();
 
             if(response.equals("Login")){
                 loginMenu.showMenu(scan);
-                continueLoop = false;
             }else if(response.equals("Sign up")){
                 signUpMenu.showMenu(scan);
-                continueLoop = false;
             }else if(response.equals("Exit")){
                 return;
             }

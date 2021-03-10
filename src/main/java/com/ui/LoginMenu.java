@@ -47,6 +47,9 @@ public class LoginMenu extends AbstractMenu{
                 return;
             } else {
                 System.out.println("Username or password incorrect. " + (1-i) + " attempts remaining");
+                if(i == 1){
+                    System.exit(0);
+                }
             }
         }
     }
