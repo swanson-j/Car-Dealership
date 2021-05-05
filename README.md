@@ -1,11 +1,11 @@
-#Car Dealership
+# Car Dealership
 ### Description
 The Car Dealership app is a console-based application that 
 facilitates the purchasing of cars. An employee can add cars 
 to the lot and manage offers for those cars, while a customer 
 can view the cars on the lot and make offers.
 
-###User Stories
+### User Stories
 * As a user, I can login.
 * As a customer, I can view the cars on the lot.
 * As a customer, I can make an offer for a car.
@@ -20,7 +20,7 @@ can view the cars on the lot and make offers.
 * As a user, I can register for a customer account.
 * As the system, I can calculate the monthly payment.
 
-###Objects
+### Objects
 Employee <br />
 Customer <br />
 Car <br />
